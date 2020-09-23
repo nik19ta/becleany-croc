@@ -1,35 +1,35 @@
 
     @font-face {
       font-family: 'Croc';
-      src: url('resources/fonts/Croc-Light__W/Croc-Light__W.eot');
+      src: url('../resources/fonts/Croc-Light__W/Croc-Light__W.eot');
       src:
-              url('resources/fonts/Croc-Light__W/Croc-Light__W.eot?#iefix') format('embedded-opentype'),
-              url('resources/fonts/Croc-Light__W/Croc-Light__W.woff2') format('woff2'),
-              url('resources/fonts/Croc-Light__W/Croc-Light__W.woff') format('woff'),
-              url('resources/fonts/Croc-Light__W/Croc-Light__W.ttf') format('truetype');
+              url('../resources/fonts/Croc-Light__W/Croc-Light__W.eot?#iefix') format('embedded-opentype'),
+              url('../resources/fonts/Croc-Light__W/Croc-Light__W.woff2') format('woff2'),
+              url('../resources/fonts/Croc-Light__W/Croc-Light__W.woff') format('woff'),
+              url('../resources/fonts/Croc-Light__W/Croc-Light__W.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
     }
 
     @font-face {
       font-family: 'Croc';
-      src: url('resources/fonts/Croc-Bold__W/Croc-Bold__W.eot');
+      src: url('../resources/fonts/Croc-Bold__W/Croc-Bold__W.eot');
       src:
-              url('resources/fonts/Croc-Bold__W/Croc-Bold__W.eot?#iefix') format('embedded-opentype'),
-              url('resources/fonts/Croc-Bold__W/Croc-Bold__W.woff2') format('woff2'),
-              url('resources/fonts/Croc-Bold__W/Croc-Bold__W.woff') format('woff'),
-              url('resources/fonts/Croc-Bold__W/Croc-Bold__W.ttf') format('truetype');
+              url('../resources/fonts/Croc-Bold__W/Croc-Bold__W.eot?#iefix') format('embedded-opentype'),
+              url('../resources/fonts/Croc-Bold__W/Croc-Bold__W.woff2') format('woff2'),
+              url('../resources/fonts/Croc-Bold__W/Croc-Bold__W.woff') format('woff'),
+              url('../resources/fonts/Croc-Bold__W/Croc-Bold__W.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
     }
     @font-face {
       font-family: 'Croc';
-      src: url('./resources/fonts/Croc-Regular__W//Croc-Regular__W.eot');
+      src: url('../resources/fonts/Croc-Regular__W//Croc-Regular__W.eot');
       src:
-              url('resources/fonts/Croc-Regular__W/Croc-Regular__W.eot?#iefix') format('embedded-opentype'),
-              url('resources/fonts/Croc-Regular__W/Croc-Regular__W.woff2') format('woff2'),
-              url('resources/fonts/Croc-Regular__W/Croc-Regular__W.woff') format('woff'),
-              url('resources/fonts/Croc-Regular__W/Croc-Regular__W.ttf') format('truetype');
+              url('../resources/fonts/Croc-Regular__W/Croc-Regular__W.eot?#iefix') format('embedded-opentype'),
+              url('../resources/fonts/Croc-Regular__W/Croc-Regular__W.woff2') format('woff2'),
+              url('../resources/fonts/Croc-Regular__W/Croc-Regular__W.woff') format('woff'),
+              url('../resources/fonts/Croc-Regular__W/Croc-Regular__W.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
     }
@@ -120,7 +120,7 @@ main {
     width: 302px;
     height: 81px;
     border: 0;
-    background: transparent url('./resources/Path.png') 0% 0% no-repeat padding-box;
+    background: transparent url('../images/Path.png') 0% 0% no-repeat padding-box;
 }
 .text_btn{
     text-align: center;
