@@ -8,6 +8,7 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
+
 app.set('view engine', 'html');
 app.use(logger('dev'));
 app.use(express.json());
@@ -15,6 +16,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', __dirname + '/public/views');
+
+
+//---------------------------------------------------------
+const urlgenerator = require('urlgenerator');
+const createURLwithParameters = urlgenerator.createURLwithParameters;
+let baseURL = "localhost:3000";
+
+// let parameters = { crap: 'taskybasky' };
+// let finalURL = createURLwithParameters(baseURL, parameters);
+// console.log("final URL is " , finalURL);
+//--------------------------------------------------------------
+
+app.use('/redirect', indexRouter);
 
 app.use('/', indexRouter);
 app.use('/task', indexRouter);
