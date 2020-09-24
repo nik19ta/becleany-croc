@@ -18,7 +18,7 @@ router.get('/', function(req, res) {
   res.sendFile(path.resolve(html + '/index.html'));
 });
 router.get('/redirect', function(req, res) {
-  res.sendFile(path.resolve(html + '/redirect.html'));
+  res.sendFile(path.resolve(html + '/redir.html'));
 
   // let parameters = { crap1: 'toilet', crap2: 'handywash' };
   // let finalURL = createURLwithParameters(baseURL, parameters);
