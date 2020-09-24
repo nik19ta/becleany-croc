@@ -14,9 +14,6 @@ const baseURL = "localhost:3000";
 // console.log("final URL is " , finalURL);
 
 
-
-// router.get('/download', (req, res) => res.sendFile('./redirect.html'))
-
 router.get('/', function(req, res) {
   res.sendFile(path.resolve(html + '/index.html'));
 });
