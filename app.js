@@ -29,7 +29,6 @@ let baseURL = "localhost:3000";
 //--------------------------------------------------------------
 
 app.use('/redirect', indexRouter);
-
 app.use('/', indexRouter);
 app.use('/task', indexRouter);
 app.use('/congrats', indexRouter);
