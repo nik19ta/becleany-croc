@@ -5,6 +5,33 @@
     <title>Title</title>
 </head>
 <body>
-
+<form>
+    <input type="text" id="login" placeholder="login" >
+    <input type="text" id="password" placeholder="password" >
+    <button onclick="sendData()" > Отправть </button>
+</form>
 </body>
+
+<script>
+    async function sendData() {
+        event.preventDefault();
+        let login = document.getElementById('login');
+        let password = document.getElementById('password');
+
+        let data = {
+            login: login.value,
+            password: password.value
+        };
+
+        console.log(data);
+
+        let response = await fetch('http://localhost:3000/getForm', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(data)
+        });}
+
+</script>
 </html>
