@@ -1,3 +1,4 @@
+
 const express = require('express');
 const router = express.Router();
 const path = require('path');
@@ -5,6 +6,37 @@ let html = './public/html';
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json()
+const mysql = require('mysql2');
+
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'VzCxia9LItze',
+    database: 'croc'
+});
+
+function login(login, password){
+    connection.query('SELECT * FROM users where login = login and password = password', (err, data, fields)=> {
+        if (data.length > 0) {
+            return "success"
+        } else {
+            return "error"
+        }
+    });
+};
+function reg(login, password) {
+    connection.query('INSERT INTO users values (login, password)', (err, data, fields) => {
+        if (err) {
+            return "error"
+        } else {
+            return "success"
+        }
+    })}
+
+
+
+
+
 
 const urlgenerator = require('urlgenerator');
 const createURLwithParameters = urlgenerator.createURLwithParameters;
