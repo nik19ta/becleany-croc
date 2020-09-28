@@ -30,20 +30,20 @@ router.get('/redirect', function(req, res) {
 });
 
 
-    router.get('/task', function (req, res) {
-        res.sendFile(path.resolve(html + '/task.html'));
-    });
+router.get('/task', function (req, res) {
+    res.sendFile(path.resolve(html + '/task.html'));
+});
 
 
 
 
-    router.get('/congrats', function (req, res) {
-        res.sendFile(path.resolve(html + '/congrats.html'));
-    });
+router.get('/congrats', function (req, res) {
+    res.sendFile(path.resolve(html + '/congrats.html'));
+});
 
-    router.get('/form', function (req, res) {
+router.get('/form', function (req, res) {
 
-    })
+})
 
     router.post('/getForm', jsonParser, function (req, res) {
         console.log(req.body.login, req.body.password);
