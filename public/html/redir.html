@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Редирект...</title>
+    <link rel="stylesheet" href="../stylesheets/main.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <center>
         <h1 class="rd">Редирект</h1>
     </center>
@@ -25,16 +27,16 @@
         }, 0);
         setTimeout(() => {
             document.querySelector('.rd').lastChild.nodeValue = 'Редирект.'
-        }, 300);
+        }, 500);
         setTimeout(() => {
             document.querySelector('.rd').lastChild.nodeValue = 'Редирект..'
-        }, 600);
+        }, 1000);
         setTimeout(() => {
             document.querySelector('.rd').lastChild.nodeValue = 'Редирект...'
-        }, 900);
+        }, 1500);
         setTimeout(() => {
             edit()
-        }, 1200);
+        }, 2000);
     }
 
     (function () {
@@ -45,7 +47,9 @@
             param2 = window.location.search.slice(1).split(',')[1].split('=')[1]
             err = null
         } catch (error) {
-            err = 'console.error();'
+            err = 'err'
+            swal("Возникла ошибка!");
+
         }
         if (err == null) {
             send_post(param1, param2)
