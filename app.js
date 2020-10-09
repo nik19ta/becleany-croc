@@ -44,6 +44,8 @@ app.use('/', indexRouter);
 app.use('/redirect', indexRouter);
 app.use('/task', indexRouter);
 app.use('/congrats', indexRouter);
+app.use('/login', indexRouter);
+app.use('/registration', indexRouter);
 
 app.use('/users', usersRouter);
 

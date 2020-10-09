@@ -65,9 +65,13 @@ router.get('/redirect', function(req, res) {
 router.get('/task', function (req, res) {
     res.sendFile(path.resolve(html + '/task.html'));
 });
+router.get('/login', function (req, res) {
+    res.sendFile(path.resolve(html + '/login.html'));
+});
 
-
-
+router.get('/registration', function (req, res) {
+    res.sendFile(path.resolve(html + '/registration.html'));
+});
 
 router.get('/congrats', function (req, res) {
     res.sendFile(path.resolve(html + '/congrats.html'));
