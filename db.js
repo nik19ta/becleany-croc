@@ -1,10 +1,10 @@
 const fs = require('fs');
-const filename = "./db.json"
-const encoding = "utf8"
+const filename = "./db.json";
+const encoding = "utf8";
 
 const randint = (min, max) => {
     return +(Math.random() * (max - min) + min).toFixed(0)
-}
+};
 
 function new_user(login, password) {
     let user = {
@@ -18,35 +18,35 @@ function new_user(login, password) {
         task6: '',
         task7: '',
         cookie: ''
-    }
+    };
     fs.readFile(filename, encoding, function (err, data) {
         if (err) throw err;
         data = JSON.parse(data);
-        data.users.push(user)
+        data['users'].push(user);
         fs.writeFileSync(filename, JSON.stringify(data));
     });
     return true
 }
 
 function select_user(login, password) {
-    file = fs.readFileSync(filename, encoding)
-    data = JSON.parse(file);
+    let file = fs.readFileSync(filename, encoding);
+    let data = JSON.parse(file);
     let count = 0;
     for (let i = 0; i < data['users'].length; i++) {
-        if (login == data['users'][i].login && password == data['users'][i].password) {
+        if (login === data['users'][i].login && password === data['users'][i].password) {
             count = 1;
             break
         }
     }
     return count > 0
-}
+};
 
 function edit_user(login, password, taskNum, text) {
-    file = fs.readFileSync(filename, encoding)
-    data = JSON.parse(file);
+    let file = fs.readFileSync(filename, encoding);
+    let data = JSON.parse(file);
     let count = 0;
     for (let i = 0; i < data['users'].length; i++) {
-        if (login == data['users'][i].login && password == data['users'][i].password) {
+        if (login === data['users'][i].login && password === data['users'][i].password) {
             data['users'][i][taskNum] = text;
         }
     }
@@ -55,16 +55,16 @@ function edit_user(login, password, taskNum, text) {
     return count > 0
 }
 function getAllUsers() {
-    file = fs.readFileSync(filename, encoding)
-    data = JSON.parse(file);
+    let file = fs.readFileSync(filename, encoding);
+    let data = JSON.parse(file);
     return data['users']
 }
 function select_task(param1, param2) {
-    file = fs.readFileSync(filename, encoding)
-    data = JSON.parse(file);
+    let file = fs.readFileSync(filename, encoding);
+    let data = JSON.parse(file);
     let name = false;
     for (let i = 0; i < data['task_list'].length; i++) {
-        if (param1 == data['task_list'][i].param1 && param2 == data['task_list'][i].param2) {
+        if (param1 === data['task_list'][i].param1 && param2 === data['task_list'][i].param2) {
             name = data['task_list'][i].name;
             break
         }
@@ -72,8 +72,8 @@ function select_task(param1, param2) {
     return name
 }
 function zeroing() {
-    file = fs.readFileSync(filename, encoding)
-    data = JSON.parse(file);
+    let file = fs.readFileSync(filename, encoding);
+    let data = JSON.parse(file);
     for (let i = 0; i < data['users'].length; i++) {
         data['users'][i]['task1'] = "";
         data['users'][i]['task2'] = "";
