@@ -54,12 +54,6 @@ header{
     position: relative;
 }
 
-.logo{
-    width: 42px;
-    height: 42px;
-    border-radius: 100px;
-    background-color: #fff;
-}
 .logo_text {
     position: absolute;
     top: -11px;
@@ -207,4 +201,17 @@ main {
 }
 .pass2{
     margin-top: 13px;
+}
+.logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 100px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo_img{
+    width: 33px;
+    height: 33px;
 }

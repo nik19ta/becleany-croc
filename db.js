@@ -2,6 +2,10 @@ const fs = require('fs');
 const filename = "./db.json"
 const encoding = "utf8"
 
+const randint = (min, max) => {
+    return +(Math.random() * (max - min) + min).toFixed(0)
+}
+
 function new_user(login, password) {
     let user = {
         login: login,
@@ -13,6 +17,7 @@ function new_user(login, password) {
         task5: '',
         task6: '',
         task7: '',
+        cookie: ''
     }
     fs.readFile(filename, encoding, function (err, data) {
         if (err) throw err;
@@ -81,6 +86,16 @@ function zeroing() {
     fs.writeFileSync(filename, JSON.stringify(data));
     return true
 }
+function generate() {
+    const cl = 'qwertyuiopasdfghjklzxcvbnm1234567890!@#$%^&*';
+    let rand = "";
+
+    for (let i = 0; i < 12; i++) {
+        rand = rand + cl[randint(0,cl.length)]
+    }
+
+    return rand
+}
 
 // создать новго юзера
 // new_user('login', 'password')
@@ -106,3 +121,4 @@ module.exports.getAllUsers = getAllUsers;
 module.exports.edit_user = edit_user;
 module.exports.select_user = select_user;
 module.exports.new_user = new_user;
+module.exports.generate = generate;

@@ -1,42 +1,13 @@
-
+const cookieParser = require('cookie-parser');
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-let html = './public/html';
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json()
-const mysql = require('mysql2');
+const db = require('../db')
 
-// const connection = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     password: 'VzCxia9LItze',
-//     database: 'croc'
-// });
-
-// function login(login, password){
-//     connection.query('SELECT * FROM users where login = login and password = password', (err, data, fields)=> {
-//         if (data.length > 0) {
-//             return "success"
-//         } else {
-//             return "error"
-//         }
-//     });
-// };
-// function reg(login, password) {
-//     connection.query('INSERT INTO users values (login, password)', (err, data, fields) => {
-//         if (err) {
-//             return "error"
-//         } else {
-//             return "success"
-//         }
-//     })}
-
-
-
-
-
+const html = './public/html';
 
 const urlgenerator = require('urlgenerator');
 const createURLwithParameters = urlgenerator.createURLwithParameters;
@@ -68,26 +39,35 @@ router.get('/task', function (req, res) {
 router.get('/login', function (req, res) {
     res.sendFile(path.resolve(html + '/login.html'));
 });
-
+router.get('/admin', function (req, res) {
+    res.sendFile(path.resolve(html + '/admin.html'));
+});
+router.post('/login_form', jsonParser, function (req, res) {
+    console.log(req.body.login, req.body.password);
+    if (db.select_user(req.body.login, req.body.password)) {
+        let cookie = db.generate();
+        db.edit_user(req.body.login, req.body.password, 'cookie', cookie)
+        res.cookie('user', cookie).send('cookie set');
+        res.send('ok');
+    } else {
+        res.send('error');
+    }
+})
 router.get('/registration', function (req, res) {
     res.sendFile(path.resolve(html + '/registration.html'));
 });
-
 router.get('/congrats', function (req, res) {
     res.sendFile(path.resolve(html + '/congrats.html'));
 });
-
 router.get('/form', function (req, res) {
 
 })
-
 router.post('/getForm', jsonParser, function (req, res) {
-    console.log(req.body.login, req.body.password);
-        
-} )
+    console.log(req.body.login, req.body.password);   
+})
 router.post('/checkParams', jsonParser, function (req, res) {
     console.log(`Человек перешёл по ссылки у которой параметры ${req.body.param1}, ${req.body.param2}`);
-} )
+})
 
 
 

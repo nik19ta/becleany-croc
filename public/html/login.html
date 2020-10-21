@@ -9,19 +9,44 @@
 <body>
      <header>
         <img class="logo_text" src="../images/logo.png" alt="">
-        <div class="logo" ></div>
+        <div class="logo logo_div" >
+            <img class="logo_img" src="../images/masc for croc.svg" alt="">
+        </div>
     </header>
     <div class="title_box">
             <p class="title" >Авторизируйся!</p>
     </div>
     <div class="form_center">
         <form class="form_login" >
-            <input type="text" class="login_inp" placeholder="Твоя почта!" >
-            <input type="text" class="password_inp" placeholder="Пароль" >
+            <input type="text" class="login_inp" id='login' placeholder="Твоя почта!" >
+            <input type="text" class="password_inp" id='password' placeholder="Пароль" >
             <div class="btn_div">
-                <button class="btn_login" > <span class="text_in_btn" >Подтвердить!</span> </button>
+                <button class="btn_login"  onclick="sendData()"  > <span class="text_in_btn" >Подтвердить!</span> </button>
             </div>
         </form>
     </div>
 </body>
+<script>
+async function sendData() {
+        event.preventDefault();
+        let login = document.getElementById('login');
+        let password = document.getElementById('password');
+
+        let data = {
+            login: login.value,
+            password: password.value
+        };
+
+        console.log(data);
+
+        let response = await fetch('http://localhost:3000/login_form', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(data)
+        });
+    }
+
+    </script>
 </html>
