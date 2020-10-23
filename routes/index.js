@@ -47,12 +47,38 @@ router.post('/login_form', jsonParser, function (req, res) {
     if (db.select_user(req.body.login, req.body.password)) {
         let cookie = db.generate();
         db.edit_user(req.body.login, req.body.password, 'cookie', cookie)
-        res.cookie('user', cookie).send('cookie set');
+        res.cookie("user", cookie);
         res.send('ok');
     } else {
         res.send('error');
     }
 })
+router.post('/reg_form', jsonParser, function (req, res) {
+    console.log(req.body.login, req.body.password);
+    let cookie = db.generate();
+    db.new_obj({
+        login: req.body.login,
+        password: req.body.password,
+        task1: "",
+        task2: "",
+        task3: "",
+        task4: "",
+        task5: "",
+        task6: "",
+        task7: "",
+        cookie: cookie
+    })
+    res.cookie("user", cookie);
+    res.send('ok');
+})
+
+router.get('/getcookies', (req, res)=>{ 
+    res.send(req.cookies);
+}); 
+router.get('/setcookies', (req, res)=>{ 
+    res.cookie("user", '%t7lpdu0n6%j');
+    res.send('ok');
+});
 router.get('/registration', function (req, res) {
     res.sendFile(path.resolve(html + '/registration.html'));
 });

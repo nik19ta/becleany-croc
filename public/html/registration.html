@@ -18,13 +18,40 @@
     </div>
     <div class="form_center">
         <form class="form_login" >
-            <input type="text" class="login_inp" placeholder="Твоя почта!" >
-            <input type="text" class="password_inp" placeholder="Пароль" >
-            <input type="text" class="password_inp pass2" placeholder="Подтверждение пароля" >
+            <input type="text" id='login' class="login_inp" placeholder="Твоя почта!" >
+            <input type="text" id="password" class="password_inp" placeholder="Пароль" >
+            <input type="text" id="password_2" class="password_inp pass2" placeholder="Подтверждение пароля" >
             <div class="btn_div">
-                <button class="btn_login" > <span class="text_in_btn" >Подтвердить!</span> </button>
+                <button class="btn_login" onclick="sendData()" > <span class="text_in_btn" >Подтвердить!</span> </button>
             </div>
         </form>
     </div>
 </body>
+<script>
+async function sendData() {
+        event.preventDefault();
+        let login = document.getElementById('login');
+        let password = document.getElementById('password');
+        let password_2 = document.getElementById('password_2');
+
+        if (password.value != password_2.value) alert('Пароли отличаются друг от друга')
+        else {
+            let data = {
+                login: login.value,
+                password: password.value
+            };
+    
+            console.log(data);
+    
+            let response = await fetch('http://localhost:3000/reg_form', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(data)
+            });
+        }
+    }
+
+</script>
 </html>

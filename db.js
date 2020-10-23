@@ -27,6 +27,15 @@ function new_user(login, password) {
     });
     return true
 }
+function new_obj(obj) {
+    fs.readFile(filename, encoding, function (err, data) {
+        if (err) throw err;
+        data = JSON.parse(data);
+        data.users.push(obj)
+        fs.writeFileSync(filename, JSON.stringify(data));
+    });
+    return true
+}
 
 function select_user(login, password) {
     file = fs.readFileSync(filename, encoding)
@@ -122,3 +131,4 @@ module.exports.edit_user = edit_user;
 module.exports.select_user = select_user;
 module.exports.new_user = new_user;
 module.exports.generate = generate;
+module.exports.new_obj = new_obj;
