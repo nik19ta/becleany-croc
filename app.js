@@ -34,9 +34,9 @@ app.use(cookieParser());
 
 
 //---------------------------------------------------------
-const urlgenerator = require('urlgenerator');
-const createURLwithParameters = urlgenerator.createURLwithParameters;
-let baseURL = "localhost:3000";
+// const urlgenerator = require('urlgenerator');
+// const createURLwithParameters = urlgenerator.createURLwithParameters;
+// let baseURL = "localhost:3000";
 
 // let parameters = { crap: 'taskybasky' };
 // let finalURL = createURLwithParameters(baseURL, parameters);

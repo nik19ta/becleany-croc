@@ -25,6 +25,7 @@ router.get('/', function(req, res) {
 });
 router.get('/redirect', function(req, res) {
     res.sendFile(path.resolve(html + '/redir.html'));
+    // TODO cookies verification
 
     // let parameters = {crap1: 'toilet', crap2: 'handywash'};
     // let finalURL = createURLwithParameters(baseURL, parameters);
@@ -38,9 +39,12 @@ router.get('/task', function (req, res) {
 });
 router.get('/login', function (req, res) {
     res.sendFile(path.resolve(html + '/login.html'));
+
 });
 router.get('/admin', function (req, res) {
     res.sendFile(path.resolve(html + '/admin.html'));
+    // TODO cookies verification
+
 });
 router.post('/login_form', jsonParser, function (req, res) {
     console.log(req.body.login, req.body.password);
@@ -93,6 +97,7 @@ router.post('/getForm', jsonParser, function (req, res) {
 })
 router.post('/checkParams', jsonParser, function (req, res) {
     console.log(`Человек перешёл по ссылки у которой параметры ${req.body.param1}, ${req.body.param2}`);
+
 })
 
 
