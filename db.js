@@ -49,6 +49,18 @@ function select_user(login, password) {
     }
     return count > 0
 };
+function select_user_cookie(cookie) {
+    let file = fs.readFileSync(filename, encoding);
+    let data = JSON.parse(file);
+    let user = null;
+    for (let i = 0; i < data['users'].length; i++) {
+        if (data['users'][i]['cookie'] == cookie) {
+            user = data['users'][i]
+            break
+        }
+    }
+    return user
+};
 
 function edit_user(login, password, taskNum, text) {
     let file = fs.readFileSync(filename, encoding);
@@ -74,7 +86,7 @@ function select_task(param1, param2) {
     let name = false;
     for (let i = 0; i < data['task_list'].length; i++) {
         if (param1 === data['task_list'][i].param1 && param2 === data['task_list'][i].param2) {
-            name = data['task_list'][i].name;
+            name = data['task_list'][i];
             break
         }
     }
@@ -132,3 +144,4 @@ module.exports.select_user = select_user;
 module.exports.new_user = new_user;
 module.exports.generate = generate;
 module.exports.new_obj = new_obj;
+module.exports.select_user_cookie = select_user_cookie;
