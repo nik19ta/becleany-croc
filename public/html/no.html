@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../stylesheets/main.css">
+        <title>Нет доступа</title>
+    </head>
+    <body>
+        <center>
+            <h1 id="text" >У вас нет доступа к admin панели</h1>
+        </center>
+        
+    </body>
+    <script>
+        setTimeout(() => {
+            document.querySelector('#text').style.opacity = 0;
+                setTimeout(() => {
+                    document.querySelector('#text').style.opacity = 1;
+                }, 500);
+        }, 150);
+        setInterval(() => {
+            console.log(1);
+            document.querySelector('#text').style.opacity = 0;
+            setTimeout(() => {
+                document.querySelector('#text').style.opacity = 1;
+            }, 500);
+        }, 1000);
+
+        setTimeout(() => {
+            location.replace("http://localhost:3000/");
+        }, 3000);
+    </script>
+    <style>
+        #text{
+            transition: opacity .5s;
+        }
+    </style>
+</html>
