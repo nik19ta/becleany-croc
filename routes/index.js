@@ -96,15 +96,21 @@ router.post('/getForm', jsonParser, function (req, res) {
     console.log(req.body.login, req.body.password);   
 })
 router.post('/checkParams', jsonParser, function (req, res) {
-    console.log(`Человек перешёл по ссылки у которой параметры ${req.body.param1}, ${req.body.param2}`);
-
     obj = db.select_user_cookie(req.cookies['user']);
     if (obj != null) {
-        let param_name = db.select_task(req.body.param1,req.body.param2)
-        db.edit_user(obj.login, obj.password, `task${param_name['num']}`, param_name['name'])
-        res.send('ok');
+        try {
+            let param_name = db.select_task(req.body.param1,req.body.param2)
+            if (param_name) {
+                db.edit_user(obj.login, obj.password, `task${param_name['num']}`, param_name['name'])
+                res.send({staus:'ok'});
+            } else {
+                res.send({staus:'error task'})
+            }
+        } catch (error) {
+            res.send({staus:'error task'})
+        }
     } else {
-        res.send('no cookie');
+        res.send({staus:'no cookie'});
     }
     
 })

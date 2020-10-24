@@ -73,6 +73,20 @@
             },
             body: JSON.stringify(data)
         })
+        let json = await response.json();
+
+        console.log(json.staus);
+        if (json.staus == 'error task') {
+            alert('Ссылка не исправна :(')
+            location.replace("http://localhost:3000/"); 
+        } else if (json.staus == 'ok') {
+            alert('Всё прошло отлично :)')
+            location.replace("http://localhost:3000/"); 
+        } else if (json.staus == 'no cookie') {
+            alert('Вы не вошли на сайт :)')
+            location.replace("http://localhost:3000/login"); 
+        }
+
     }
 
 
