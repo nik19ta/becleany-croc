@@ -53,12 +53,6 @@ router.get('/admin', function (req, res) {
     } catch (error) {
         res.sendFile(path.resolve(html + '/no.html'));
     }
-    
-    // if (obj) {
-        
-    // }
-    // TODO cookies verification
-
 });
 router.post('/login_form', jsonParser, function (req, res) {
     console.log(req.body.login, req.body.password);
@@ -89,14 +83,6 @@ router.post('/reg_form', jsonParser, function (req, res) {
     res.cookie("user", cookie);
     res.send('ok');
 })
-
-router.get('/getcookies', (req, res)=>{ 
-    res.send(req.cookies);
-}); 
-router.get('/setcookies', (req, res)=>{ 
-    res.cookie("user", '%t7lpdu0n6%j');
-    res.send('ok');
-});
 router.get('/registration', function (req, res) {
     res.sendFile(path.resolve(html + '/registration.html'));
 });
