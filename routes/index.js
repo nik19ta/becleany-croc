@@ -42,7 +42,21 @@ router.get('/login', function (req, res) {
 
 });
 router.get('/admin', function (req, res) {
-    res.sendFile(path.resolve(html + '/admin.html'));
+    obj = db.select_user_cookie(req.cookies['user']);
+    console.log();
+    try {
+        if (obj.login == 'admin') {
+        res.sendFile(path.resolve(html + '/admin.html'));
+    } else {
+        res.sendFile(path.resolve(html + '/no.html'));
+    }
+    } catch (error) {
+        res.sendFile(path.resolve(html + '/no.html'));
+    }
+    
+    // if (obj) {
+        
+    // }
     // TODO cookies verification
 
 });
