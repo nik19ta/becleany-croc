@@ -35,6 +35,7 @@ async function sendData() {
         let password_2 = document.getElementById('password_2');
 
         if (password.value != password_2.value) alert('Пароли отличаются друг от друга')
+        else if (document.getElementById('login').value == '' || document.getElementById('password').value == '') alert('Поля не могут быть пустыми')
         else {
             let data = {
                 login: login.value,
