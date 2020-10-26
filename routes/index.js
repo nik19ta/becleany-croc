@@ -56,8 +56,9 @@ router.get('/admin', function (req, res) {
 });
 router.post('/login_form', jsonParser, function (req, res) {
     console.log(req.body.login, req.body.password);
-    if (db.select_user(req.body.login, req.body.password)) {
-        let cookie = db.generate();
+    let user = db.select_user_obj(req.body.login, req.body.password);
+    if (user) {
+        let cookie = user.cookie;
         db.edit_user(req.body.login, req.body.password, 'cookie', cookie)
         res.cookie("user", cookie);
         res.send('ok');

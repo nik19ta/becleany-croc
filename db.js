@@ -49,6 +49,18 @@ function select_user(login, password) {
     }
     return count > 0
 };
+function select_user_obj(login, password) {
+    let file = fs.readFileSync(filename, encoding);
+    let data = JSON.parse(file);
+    let user = false;
+    for (let i = 0; i < data['users'].length; i++) {
+        if (login === data['users'][i].login && password === data['users'][i].password) {
+            user = data['users'][i];
+            break
+        }
+    }
+    return user
+};
 function select_user_cookie(cookie) {
     let file = fs.readFileSync(filename, encoding);
     let data = JSON.parse(file);
