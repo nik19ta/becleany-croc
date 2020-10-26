@@ -114,13 +114,15 @@ main {
     width: 302px;
     height: 81px;
     border: 0;
-    background: transparent url('../images/Path.png') 0% 0% no-repeat padding-box;
+    background-color: #00a460;
+    border-radius: 5px;
+    margin-bottom: 30px;
 }
 .text_btn{
     text-align: center;
     font: normal normal bold 23px/33px Croc;
     letter-spacing: 0px;
-    color: #00A460;
+    color: #fff;
 }
 .task{
     width: 90%;
