@@ -41,7 +41,7 @@ async function sendData() {
 
         if (document.getElementById('login').value == '' || document.getElementById('password').value == '') alert('Поля не могут быть пустыми')
         else {
-            let response = await fetch('http://213.189.216.91:3000/login_form', {
+            let response = await fetch('http://localhost:3000/login_form', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
@@ -49,7 +49,7 @@ async function sendData() {
                 body: JSON.stringify(data)
             });
 
-            location.replace("http://213.189.216.91:3000/"); 
+            location.replace("http://localhost:3000/"); 
         }
 
     }
