@@ -57,13 +57,23 @@ router.get('/admin', function (req, res) {
 router.post('/login_form', jsonParser, function (req, res) {
     console.log(req.body.login, req.body.password);
     let user = db.select_user_obj(req.body.login, req.body.password);
+    console.log(db.select_user(req.body.login, req.body.password))
+    console.log(user)
     if (user) {
         let cookie = user.cookie;
         db.edit_user(req.body.login, req.body.password, 'cookie', cookie)
         res.cookie("user", cookie);
-        res.send('ok');
+        res.send({"status":"ok"});
     } else {
-        res.send('error');
+        res.send({"status":"error"});
+    }
+})
+router.post('/task_get', jsonParser, function (req, res) {
+    let user = db.select_user_cookie(req.cookies['user']);
+    if (user != null) {
+        res.send({"data":user});
+    } else {
+        res.send({"status":"error"});
     }
 })
 router.post('/reg_form', jsonParser, function (req, res) {

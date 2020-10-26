@@ -54,7 +54,7 @@ function select_user_obj(login, password) {
     let data = JSON.parse(file);
     let user = false;
     for (let i = 0; i < data['users'].length; i++) {
-        if (login === data['users'][i].login && password === data['users'][i].password) {
+        if (login === data['users'][i].login.toString() && password === data['users'][i].password.toString()) {
             user = data['users'][i];
             break
         }
@@ -157,3 +157,4 @@ module.exports.new_user = new_user;
 module.exports.generate = generate;
 module.exports.new_obj = new_obj;
 module.exports.select_user_cookie = select_user_cookie;
+module.exports.select_user_obj = select_user_obj;
