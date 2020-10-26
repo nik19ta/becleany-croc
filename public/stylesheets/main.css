@@ -195,6 +195,7 @@ main {
     width: 85%;
     display: flex;
     justify-content: end;
+    flex-wrap: wrap;
 }
 .form_center{
     width: 100%;
@@ -216,4 +217,12 @@ main {
 .logo_img{
     width: 33px;
     height: 33px;
+}
+.href_to_reg{
+    margin-top: 10px;
+    padding-right: 2px;
+    width: 100%;
+    text-align: right;
+    text-decoration: none;
+    color: #00A460;
 }
