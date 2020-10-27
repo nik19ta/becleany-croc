@@ -54,14 +54,11 @@ router.get('/admin', function (req, res) {
         res.sendFile(path.resolve(html + '/no.html'));
     }
 });
-router.post('/login_form', jsonParser, function (req, res) {
-    console.log(req.body.login, req.body.password);
+router.post('/login_form', jsonParser, async function (req, res) {
+    let cookie = db.generate(12);
     let user = db.select_user_obj(req.body.login, req.body.password);
-    console.log(db.select_user(req.body.login, req.body.password))
-    console.log(user)
     if (user) {
-        let cookie = user.cookie;
-        db.edit_user(req.body.login, req.body.password, 'cookie', cookie)
+        await db.add_cookie(req.body.login, req.body.password, cookie)
         res.cookie("user", cookie);
         res.send({"status":"ok"});
     } else {
@@ -76,10 +73,10 @@ router.post('/task_get', jsonParser, function (req, res) {
         res.send({"status":"error"});
     }
 })
-router.post('/reg_form', jsonParser, function (req, res) {
-    console.log(req.body.login, req.body.password);
-    let cookie = db.generate();
-    db.new_obj({
+router.post('/reg_form', jsonParser, async function (req, res) {
+    let cookie = db.generate(12);
+    console.log(cookie);
+    await db.new_obj({
         login: req.body.login,
         password: req.body.password,
         task1: "",
@@ -89,7 +86,7 @@ router.post('/reg_form', jsonParser, function (req, res) {
         task5: "",
         task6: "",
         task7: "",
-        cookie: cookie
+        cookie: [`${cookie}`]
     })
     res.cookie("user", cookie);
     res.send('ok');
