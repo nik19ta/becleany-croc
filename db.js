@@ -27,13 +27,14 @@ function new_user(login, password) {
     });
     return true
 }
-function new_obj(obj) {
+async function new_obj(obj) {
     fs.readFile(filename, encoding, function (err, data) {
         if (err) throw err;
         data = JSON.parse(data);
         data.users.push(obj)
         fs.writeFileSync(filename, JSON.stringify(data));
     });
+    console.log('ПОльзовтель добавлен!');
     return true
 }
 
