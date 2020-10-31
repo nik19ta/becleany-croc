@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="../stylesheets/main.css">
     <meta charset="UTF-8">
@@ -7,40 +8,61 @@
     <link rel="shortcut icon" href="../images/masc-for-croc.ico" type="image/x-icon">
     <title>Main</title>
 </head>
+
 <body>
     <header>
         <img class="logo_text" src="../images/logo.png" alt="">
-        <div class="logo logo_div" >
+        <div class="logo logo_div">
             <img class="logo_img" src="../images/masc for croc.svg" alt="">
         </div>
     </header>
 
     <main>
         <div class="title_box">
-            <p class="title" >Армагеддон здесь!</p>
-            <p class="sub_title" >А можно просто помыть руки и носить маску!</p>
+            <p class="title">Армагеддон здесь!</p>
+            <p class="sub_title">А можно просто помыть руки и носить маску!</p>
         </div>
-        <div class="content" >
+        <div class="content">
             <img class="tasks-big" src="../images/tasks-big.png" alt="">
-            <p class="content-title" >Пара заданий просто чтобы всем было комфортно.</p>
-            <p class="content-sub-title" >(И тебе, кстати, тоже будет приятнее)</p>
+            <p class="content-title">Пара заданий просто чтобы всем было комфортно.</p>
+            <p class="content-sub-title">(И тебе, кстати, тоже будет приятнее)</p>
         </div>
-        <div class="content" >
+        <div class="content">
             <img class="tasks-big" src="../images/mobile-telephone.png" alt="">
-            <p class="content-title" >Только телефон и твоё желание!</p>
+            <p class="content-title">Только телефон и твоё желание!</p>
         </div>
-        <div class="content" >
+        <div class="content">
             <img class="tasks-big" src="../images/calendar-big.png" alt="">
-            <p class="content-title" >Каждую неделю!</p>
+            <p class="content-title">Каждую неделю!</p>
         </div>
-        <div class="content" >
+        <div class="content">
             <button class="auth_btn">
-                <a href="./login" class="text_btn" >Авторизация!</a>
+                <a href="./login" class="text_btn">Авторизация!</a>
             </button>
         </div>
     </main>
 
-    
-    
+    <script>
+        fetch('http://213.189.216.91:3000/user_cookie', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST"
+            })
+            .then(response => response.text())
+            .then((response) => {
+                response = JSON.parse(response)
+                console.log(response);
+                if (response.status) {
+                    document.querySelector('.text_btn').innerHTML = 'В личный кабинет!'
+                    document.querySelector('.text_btn').href = './task'
+                }
+            })
+            .catch(err => console.log(err))
+    </script>
+
+
 </body>
+
 </html>

@@ -74,6 +74,14 @@ router.post('/task_get', jsonParser, function (req, res) {
         res.send({"status":"error"});
     }
 })
+router.post('/user_cookie', jsonParser, function (req, res) {
+    let user = db.select_user_cookie(req.cookies['user']);
+    if (user != null) {
+        res.send({"status":true});
+    } else {
+        res.send({"status":false});
+    }
+})
 router.post('/reg_form', jsonParser, async function (req, res) {
     let cookie = db.generate(12);
     console.log(cookie);
