@@ -45,7 +45,12 @@
 
                 document.querySelector('#user_name').innerText = `Привет ${response.data.login.split('@')[0]}!`
                 for (let i = 1; i <= 6; i++) {
+
                     document.querySelector(`#task${i}`).innerText = response.data[`task${i}`] != '' ? '✔ ' +response.data[`task${i}`] : response.tasks[`${i -1}`][`name`]     
+
+                    if (response.data[`task${i}`] != '') {
+                        document.querySelector(`#task${i}`).classList.add('true')   
+                    }
                 }
 
 

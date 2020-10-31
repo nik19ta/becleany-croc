@@ -147,8 +147,10 @@ main {
     width: 100%;
     font: normal normal normal 14px/20px Croc;
     letter-spacing: 0px;
-    color: #68676C;
     opacity: 1;
+}
+.true{
+    color: #00A460;
 }
 .title_finish{
     text-align: center;
