@@ -67,8 +67,9 @@ router.post('/login_form', jsonParser, async function (req, res) {
 })
 router.post('/task_get', jsonParser, function (req, res) {
     let user = db.select_user_cookie(req.cookies['user']);
+    let tasks = db.select_tasks();
     if (user != null) {
-        res.send({"data":user});
+        res.send({"data":user, "tasks": tasks});
     } else {
         res.send({"status":"error"});
     }

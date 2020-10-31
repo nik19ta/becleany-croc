@@ -42,15 +42,11 @@
             .then((response) => {
                 response = JSON.parse(response)
                 console.log(response);
-                document.querySelector('#task1').innerText = response.data.task1
-                document.querySelector('#task2').innerText = response.data.task2
-                document.querySelector('#task3').innerText = response.data.task3
-                document.querySelector('#task4').innerText = response.data.task4
-                document.querySelector('#task5').innerText = response.data.task5
-                document.querySelector('#task6').innerText = response.data.task6
-                document.querySelector('#user_name').innerText = `Привет ${response.data.login}!`
 
-
+                document.querySelector('#user_name').innerText = `Привет ${response.data.login.split('@')[0]}!`
+                for (let i = 1; i <= 6; i++) {
+                    document.querySelector(`#task${i}`).innerText = response.data[`task${i}`] != '' ? '✔ ' +response.data[`task${i}`] : response.tasks[`${i -1}`][`name`]     
+                }
 
 
             })
