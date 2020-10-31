@@ -17,7 +17,7 @@ function new_user(login, password) {
         task5: '',
         task6: '',
         task7: '',
-        cookie: ''
+        cookie: []
     };
     fs.readFile(filename, encoding, function (err, data) {
         if (err) throw err;
@@ -66,13 +66,33 @@ function select_user_cookie(cookie) {
     let data = JSON.parse(file);
     let user = null;
     for (let i = 0; i < data['users'].length; i++) {
-        if (data['users'][i]['cookie'] == cookie) {
-            user = data['users'][i]
-            break
+        for (let j = 0; j < data['users'][i]['cookie'].length; j++) {
+            console.log(data['users'][i]['cookie'][j]);
+            console.log(cookie);
+            if (data['users'][i]['cookie'][j] == cookie) {
+                user = data['users'][i]
+                break
+            }
         }
     }
     return user
 };
+
+function add_cookie(login, password, value) {
+    let file = fs.readFileSync(filename, encoding);
+    let data = JSON.parse(file);
+    for (let i = 0; i < data['users'].length; i++) {
+        for (let j = 0; j < data['users'][i]['cookie'].length; j++) {
+            console.log(data['users']);
+            if (data['users'][i]['login']==login && data['users'][i]['password']==password) {
+                console.log(data['users'][i]['cookie']);
+                data['users'][i]['cookie'].push(value)
+                break
+            }
+        }
+    }
+    fs.writeFileSync(filename, JSON.stringify(data));
+}
 
 function edit_user(login, password, taskNum, text) {
     let file = fs.readFileSync(filename, encoding);
@@ -158,3 +178,4 @@ module.exports.generate = generate;
 module.exports.new_obj = new_obj;
 module.exports.select_user_cookie = select_user_cookie;
 module.exports.select_user_obj = select_user_obj;
+module.exports.add_cookie = add_cookie;

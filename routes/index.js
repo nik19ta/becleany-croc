@@ -61,7 +61,7 @@ router.post('/login_form', jsonParser, function (req, res) {
     console.log(user)
     if (user) {
         let cookie = user.cookie;
-        db.edit_user(req.body.login, req.body.password, 'cookie', cookie)
+        db.add_cookie(req.body.login, req.body.password, cookie)
         res.cookie("user", cookie);
         res.send({"status":"ok"});
     } else {
@@ -89,8 +89,9 @@ router.post('/reg_form', jsonParser, function (req, res) {
         task5: "",
         task6: "",
         task7: "",
-        cookie: cookie
+        cookie: []
     })
+    db.add_cookie(req.body.login, req.body.password, cookie)
     res.cookie("user", cookie);
     res.send('ok');
 })

@@ -19,7 +19,11 @@
     </div>
     <div class="form_center">
         <form class="form_login" >
-            <input type="text" id='login' class="login_inp" placeholder="Твоя почта!" >
+            <!-- <input type="text" id='login' class="login_inp" placeholder="Твоя почта!" > -->
+            <span class="login_inputs" >
+                <input type="text" class="login_inp login_name " id='login' placeholder="Твоя почта!" >
+                <input type="text" class="login_inp_mail login_inp " value='@croc.ru' readonly>
+            </span>
             <input type="text" id="password" class="password_inp" placeholder="Пароль" >
             <input type="text" id="password_2" class="password_inp pass2" placeholder="Подтверждение пароля" >
             <div class="btn_div">
@@ -40,12 +44,12 @@ async function sendData() {
         else if (document.getElementById('login').value == '' || document.getElementById('password').value == '') alert('Поля не могут быть пустыми')
         else {
             let data = {
-                login: login.value,
+                login: login.value+'@croc.ru',
                 password: password.value
             };
     
             console.log(data);
-
+            
             fetch('http://213.189.216.91:3000/reg_form', {
                 headers: {
                     'Accept': 'application/json',

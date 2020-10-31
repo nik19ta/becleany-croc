@@ -226,3 +226,18 @@ main {
     text-decoration: none;
     color: #00A460;
 }
+.login_inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login_inp_mail{
+    width: 30%;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-left: none;
+}
+.login_name {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
