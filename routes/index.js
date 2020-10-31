@@ -58,8 +58,7 @@ router.post('/login_form', jsonParser, async function (req, res) {
     let cookie = db.generate(12);
     let user = db.select_user_obj(req.body.login, req.body.password);
     if (user) {
-        let cookie = user.cookie;
-        db.add_cookie(req.body.login, req.body.password, cookie)
+        await db.add_cookie(req.body.login, req.body.password, cookie)
         res.cookie("user", cookie);
         res.send({"status":"ok"});
     } else {
@@ -87,9 +86,8 @@ router.post('/reg_form', jsonParser, async function (req, res) {
         task5: "",
         task6: "",
         task7: "",
-        cookie: []
+        cookie: [`${cookie}`]
     })
-    db.add_cookie(req.body.login, req.body.password, cookie)
     res.cookie("user", cookie);
     res.send('ok');
 })

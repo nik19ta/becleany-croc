@@ -79,17 +79,18 @@ function select_user_cookie(cookie) {
     return user
 };
 
-function add_cookie(login, password, value) {
+async function add_cookie(login, password, value) {
     let file = fs.readFileSync(filename, encoding);
     let data = JSON.parse(file);
     for (let i = 0; i < data['users'].length; i++) {
-        for (let j = 0; j < data['users'][i]['cookie'].length; j++) {
-            console.log(data['users']);
-            if (data['users'][i]['login']==login && data['users'][i]['password']==password) {
-                console.log(data['users'][i]['cookie']);
-                data['users'][i]['cookie'].push(value)
-                break
-            }
+        console.log(data['users']);
+        console.log({
+            "test":"test"
+        });
+        
+        if (data['users'][i]['login']==login && data['users'][i]['password']==password) {
+            data['users'][i]['cookie'].push(value)
+            break
         }
     }
     fs.writeFileSync(filename, JSON.stringify(data));
