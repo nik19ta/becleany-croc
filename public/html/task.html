@@ -29,8 +29,30 @@
             <p class="task_q" id="task5" ></p>
             <p class="task_q" id="task6" ></p>
         </div>
+        <div class="content">
+            <button class="auth_btn">
+                <p onclick='exit()' class="text_btn">Выйти!</p>
+            </button>
+        </div>
     </main>
     <script>
+
+        function exit() {
+            fetch('http://213.189.216.91:3000/exit', {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+        })
+            .then(response => response.text())
+            .then((response) => {
+                console.log(response)
+                location.replace("http://213.189.216.91:3000/");
+            })
+            .catch(err => console.log(err))
+        }
+
         fetch('http://213.189.216.91:3000/task_get', {
             headers: {
                 'Accept': 'application/json',

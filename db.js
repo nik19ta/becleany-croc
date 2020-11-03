@@ -79,6 +79,34 @@ function select_user_cookie(cookie) {
     return user
 };
 
+function removeA(arr) {
+    var what, a = arguments, L = a.length, ax;
+    while (L > 1 && arr.length) {
+        what = a[--L];
+        while ((ax= arr.indexOf(what)) !== -1) {
+            arr.splice(ax, 1);
+        }
+    }
+    return arr;
+}
+
+
+function cookie_del(cookie) {
+    let file = fs.readFileSync(filename, encoding);
+    let data = JSON.parse(file);
+    let user = null;
+    for (let i = 0; i < data['users'].length; i++) {
+        for (let j = 0; j < data['users'][i]['cookie'].length; j++) {
+            if (data['users'][i]['cookie'][j] == cookie) {
+                user = data['users'][i]
+                removeA(data['users'][i]['cookie'], cookie);
+                break
+            }
+        }
+    }
+    return 'ok'
+};
+
 async function add_cookie(login, password, value) {
     let file = fs.readFileSync(filename, encoding);
     let data = JSON.parse(file);
@@ -191,3 +219,4 @@ module.exports.select_user_cookie = select_user_cookie;
 module.exports.select_user_obj = select_user_obj;
 module.exports.add_cookie = add_cookie;
 module.exports.select_tasks = select_tasks;
+module.exports.cookie_del = cookie_del;

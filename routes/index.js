@@ -20,6 +20,7 @@ const baseURL = "213.189.216.91:3000";
 
 
 
+
 router.get('/', function(req, res) {
   res.sendFile(path.resolve(html + '/index.html'));
 });
@@ -34,8 +35,11 @@ router.get('/redirect', function(req, res) {
 });
 
 
-router.get('/task', function (req, res) {
+router.get('/lk', function (req, res) {
     res.sendFile(path.resolve(html + '/task.html'));
+});
+router.get('/congrats', function (req, res) {
+    res.sendFile(path.resolve(html + '/congrats.html'));
 });
 router.get('/login', function (req, res) {
     res.sendFile(path.resolve(html + '/login.html'));
@@ -64,6 +68,13 @@ router.post('/login_form', jsonParser, async function (req, res) {
     } else {
         res.send({"status":"error"});
     }
+})
+// removeA(ary, 'seven');
+// VLHIrdjOaWUEirY
+router.post('/exit', jsonParser, async function (req, res) {
+    db.cookie_del(req.cookies['user'])
+    res.cookie("user", null);
+    res.send({"status":"ok"});
 })
 router.post('/task_get', jsonParser, function (req, res) {
     let user = db.select_user_cookie(req.cookies['user']);

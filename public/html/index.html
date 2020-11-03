@@ -39,9 +39,9 @@
             <button class="auth_btn">
                 <a href="./login" class="text_btn">Авторизация!</a>
             </button>
-                    <button class="auth_btn">
-                        <a href="./" class="text_btn leran_more">Узнать больше о безопасности</a>
-                    </button>
+            <button class="auth_btn">
+                <a href="./" class="text_btn leran_more">Узнать больше о безопасности</a>
+            </button>
         </div>
     </main>
 
@@ -59,7 +59,7 @@
                 console.log(response);
                 if (response.status) {
                     document.querySelector('.text_btn').innerHTML = 'В личный кабинет!'
-                    document.querySelector('.text_btn').href = './task'
+                    document.querySelector('.text_btn').href = './lk'
                 }
             })
             .catch(err => console.log(err))
