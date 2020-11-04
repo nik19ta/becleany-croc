@@ -250,3 +250,25 @@ main {
 .leran_more {
     font-size: 19px;
 }
+.sub_title {
+    width: 100%;
+    text-align: center;
+}
+
+.contents {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.main_cont {
+    width: 100%;
+}
+.content-btn{
+    margin-top: 40px;
+    /* display: flex;
+    justify-content: center;
+    flex-wrap: wrap; */
+}
+
+/* @media only screen and (max-device-width: 480px) {} */
