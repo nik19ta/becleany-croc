@@ -188,6 +188,8 @@ main {
     font: normal normal bold 14px/22px Croc;
 }
 .form_login{
+    padding-left: 20px;
+    padding-right: 20px;
     width: 370px;
     display: flex;
     justify-content: center;
