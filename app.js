@@ -17,10 +17,9 @@ app.use(function(req, res, next) {
     next();
 });
 
-
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 
 app.use('/form', indexRouter);
 app.set('view engine', 'html');
@@ -32,16 +31,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', __dirname + '/public/views');
 app.use(cookieParser());
 
-
-//---------------------------------------------------------
-// const urlgenerator = require('urlgenerator');
-// const createURLwithParameters = urlgenerator.createURLwithParameters;
-// let baseURL = "localhost:3000";
-
-// let parameters = { crap: 'taskybasky' };
-// let finalURL = createURLwithParameters(baseURL, parameters);
-// console.log("final URL is " , finalURL);
-//--------------------------------------------------------------
 
 app.use('/getForm', indexRouter);
 app.use('/', indexRouter);

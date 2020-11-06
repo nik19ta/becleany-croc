@@ -1,1 +1,67 @@
-{"users":[{"login":"nik19ta@croc.ru","password":"Sekret2806","task1":"","task2":"Взял ключи чистыми руками","task3":"","task4":"","task5":"","task6":"","task7":"","cookie":["5y0cq9gj*%mn","!dr7yw6kdold","box!*&6c2nundefinedd","psxomp@4l4eh","bk9lo6evmundefinedfr","l#@*o8qundefinedv3d2","b1undefinedygmf3^u7^"]},{"login":"roflan@croc.ru","password":"asd","task1":"","task2":"","task3":"","task4":"","task5":"","task6":"","task7":"","cookie":["q^cvcyu9o7*n"]}],"task_list":[{"name":"Тщательно помыл руки в течении 20 секунд","param1":"3870","param2":"7394","num":1},{"name":"Взял ключи чистыми руками","param1":"477","param2":"3731","num":2},{"name":"Воспользовался лестницей","param1":"4457","param2":"9153","num":3},{"name":"Сел за стол в маске","param1":"3687","param2":"86","num":4},{"name":"Выпил чашечку кофе наедине с собой (соблюдал дистанцию на кухня).","param1":"6328","param2":"6027","num":5},{"name":"Улыбался коллегам весь день в маске (не снимал маску).","param1":"7589","param2":"3941","num":6}]}
+{
+    "users": [{
+        "login": "nik19ta@croc.ru",
+        "password": "Sekret2806",
+        "task1": "",
+        "task2": "Взял ключи чистыми руками",
+        "task3": "",
+        "task4": "",
+        "task5": "",
+        "task6": "",
+        "task7": "",
+        "cookie": ["5y0cq9gj*%mn", "!dr7yw6kdold", "box!*&6c2nundefinedd", "psxomp@4l4eh", "bk9lo6evmundefinedfr", "l#@*o8qundefinedv3d2", "b1undefinedygmf3^u7^"]
+    }, {
+        "login": "admin@croc.ru",
+        "password": "3275",
+        "task1": "",
+        "task2": "",
+        "task3": "",
+        "task4": "",
+        "task5": "",
+        "task6": "",
+        "task7": "",
+        "cookie": ["", "@2r6^4tfrm*t"]
+    }, {
+        "login": "roflan@croc.ru",
+        "password": "asd",
+        "task1": "",
+        "task2": "",
+        "task3": "",
+        "task4": "",
+        "task5": "",
+        "task6": "",
+        "task7": "",
+        "cookie": ["q^cvcyu9o7*n"]
+    }],
+    "task_list": [{
+        "name": "Тщательно помыл руки в течении 20 секунд",
+        "param1": "3870",
+        "param2": "7394",
+        "num": 1
+    }, {
+        "name": "Взял ключи чистыми руками",
+        "param1": "477",
+        "param2": "3731",
+        "num": 2
+    }, {
+        "name": "Воспользовался лестницей",
+        "param1": "4457",
+        "param2": "9153",
+        "num": 3
+    }, {
+        "name": "Сел за стол в маске",
+        "param1": "3687",
+        "param2": "86",
+        "num": 4
+    }, {
+        "name": "Выпил чашечку кофе наедине с собой (соблюдал дистанцию на кухня).",
+        "param1": "6328",
+        "param2": "6027",
+        "num": 5
+    }, {
+        "name": "Улыбался коллегам весь день в маске (не снимал маску).",
+        "param1": "7589",
+        "param2": "3941",
+        "num": 6
+    }]
+}
