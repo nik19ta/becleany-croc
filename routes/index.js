@@ -17,6 +17,13 @@ const baseURL = "localhost:3000";
 // let finalURL = createURLwithParameters(baseURL, parameters);
 // //console.log("final URL is " , finalURL);
 
+const csvWriter = require('csv-write-stream');
+const csv = require('csv-parser');
+const fs = require("fs");
+
+let writer = csvWriter({
+    sendHeaders: false
+});
 
 
 
