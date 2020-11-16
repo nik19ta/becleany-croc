@@ -50,7 +50,7 @@
         } catch (error) {
             err = 'err'
             swal("Возникла ошибка!");
-
+            location.replace("http://localhost:3000/lk");
         }
         if (err == null) {
             send_post(param1, param2)
@@ -85,7 +85,7 @@
             location.replace("http://localhost:3000/lk");
         } else if (json.staus == 'no cookie') {
             alert('Вы не вошли на сайт :)')
-            location.replace("http://localhost:3000/login"); 
+            location.replace("http://localhost:3000/login");
         }
 
     }
