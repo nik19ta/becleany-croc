@@ -53,7 +53,7 @@ app.listen(3000, () => {
     setInterval(
         () => {
             del.check()
-        }, 3600)
+        }, (3600 * 500))
     
 });
 // module.exports = app;
