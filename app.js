@@ -6,9 +6,12 @@ const bodyParser = require('body-parser');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
+const del = require('./delete');
+
 
 const app = express();
 const jsonParser = bodyParser.json()
+
 
 
 app.use(function(req, res, next) {
@@ -44,7 +47,14 @@ app.use('/admin', indexRouter);
 app.use('/users', usersRouter);
 
 
-app.listen(3000);
-console.log('Server started...');
-module.exports = app;
+app.listen(3000, () => {
+    console.log('Server started...');
+
+    setInterval(
+        () => {
+            del.check()
+        }, 3600)
+    
+});
+// module.exports = app;
 

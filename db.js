@@ -62,6 +62,16 @@ function select_user_obj(login, password) {
     }
     return user
 };
+
+function write_users(users) {
+    fs.readFile(filename, encoding, function (err, data) {
+        if (err) throw err;
+        data = JSON.parse(data);
+        data.users = users;
+        fs.writeFileSync(filename, JSON.stringify(data));
+    });
+}
+
 function select_user_cookie(cookie) {
     let file = fs.readFileSync(filename, encoding);
     let data = JSON.parse(file);
@@ -220,3 +230,4 @@ module.exports.select_user_obj = select_user_obj;
 module.exports.add_cookie = add_cookie;
 module.exports.select_tasks = select_tasks;
 module.exports.cookie_del = cookie_del;
+module.exports.write_users = write_users;
