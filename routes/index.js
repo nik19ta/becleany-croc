@@ -81,7 +81,9 @@ router.get('/get_users_in_csv', function (req, res) {
     if (obj.login == 'admin@croc.ru') {
         let objs = db.getAllUsers()
 
-        writer.pipe(fs.createWriteStream('./data.csv', {flags: 'a'}));
+        writer.pipe(fs.createWriteStream('./data.csv', {
+            flags: 'a'
+        }));
 
         for (let i = 0; i < objs.length; i++) {
 
@@ -91,12 +93,12 @@ router.get('/get_users_in_csv', function (req, res) {
             } else {
                 tc = false;
             }
-        
+
             writer.write({
                 login: objs[i].login,
                 tasks_complete: tc,
             });
-            
+
         }
         writer.end()
 
@@ -104,9 +106,9 @@ router.get('/get_users_in_csv', function (req, res) {
             res.sendFile(path.resolve('./data.csv'));
         }, 600);
         setTimeout(() => {
-            fs.unlink('./data.csv',function(err){
-                if(err) return console.log(err);
-        });  
+            fs.unlink('./data.csv', function (err) {
+                if (err) return console.log(err);
+            });
 
         }, 1000)
     } else {
@@ -206,6 +208,17 @@ router.post('/checkParams', jsonParser, function (req, res) {
             let param_name = db.select_task(req.body.param1, req.body.param2)
             if (param_name) {
                 db.edit_user(obj.login, obj.password, `task${param_name['num']}`, param_name['name'])
+                if (
+                    obj.task1 == '' &&
+                    obj.task2 == '' &&
+                    obj.task3 == '' &&
+                    obj.task4 == '' &&
+                    obj.task5 == '' &&
+                    obj.task6 == ''
+                ) {
+                    db.edit_user(obj.login, obj.password, 'time', new Date)
+                }
+
                 res.send({
                     staus: 'ok'
                 });
