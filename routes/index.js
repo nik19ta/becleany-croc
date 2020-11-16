@@ -36,15 +36,25 @@ router.get('/redirect', function (req, res) {
 
 
 router.get('/lk', function (req, res) {
-    res.sendFile(path.resolve(html + '/task.html'));
+    let user = db.select_user_cookie(req.cookies['user']);
+    if (user != null) {
+        res.sendFile(path.resolve(html + '/task.html'));
+    } else {
+        res.redirect("/login")
+    }
 });
 router.get('/congrats', function (req, res) {
     res.sendFile(path.resolve(html + '/congrats.html'));
 });
 router.get('/login', function (req, res) {
-    res.sendFile(path.resolve(html + '/login.html'));
-
+    let user = db.select_user_cookie(req.cookies['user']);
+    if (user != null) {
+        res.redirect("/lk")
+    } else {
+        res.sendFile(path.resolve(html + '/login.html'));
+    }
 });
+
 router.get('/admin', function (req, res) {
     obj = db.select_user_cookie(req.cookies['user']);
     //console.log();
@@ -159,13 +169,19 @@ router.post('/reg_form', jsonParser, async function (req, res) {
         task5: "",
         task6: "",
         task7: "",
-        cookie: [`${cookie}`]
+        cookie: [`${cookie}`],
+        time: ""
     })
     res.cookie("user", cookie);
     res.send('ok');
 })
 router.get('/registration', function (req, res) {
-    res.sendFile(path.resolve(html + '/registration.html'));
+    let user = db.select_user_cookie(req.cookies['user']);
+    if (user != null) {
+        res.redirect("/lk")
+    } else {
+        res.sendFile(path.resolve(html + '/registration.html'));
+    }
 });
 router.get('/congrats', function (req, res) {
     res.sendFile(path.resolve(html + '/congrats.html'));
