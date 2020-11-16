@@ -64,50 +64,53 @@
             })
             .then(response => response.text())
             .then((response) => {
-                
-                
+
+
                 const floor = (num) => {
                     return Math.floor(num);
                 };
-                
+
                 response = JSON.parse(response)
                 document.querySelector('#user_name').innerText = `Привет ${response.data.login.split('@')[0]}!`
 
                 if (
-                    response.data[`task1`] == '' &&
-                    response.data[`task2`] == '' &&
-                    response.data[`task3`] == '' &&
-                    response.data[`task4`] == '' &&
-                    response.data[`task5`] == '' &&
-                    response.data[`task6`] == ''
+                    response.data[`task1`] != '' &&
+                    response.data[`task2`] != '' &&
+                    response.data[`task3`] != '' &&
+                    response.data[`task4`] != '' &&
+                    response.data[`task5`] != '' &&
+                    response.data[`task6`] != ''
                 ) {
                     console.log(response);
-                    document.querySelector('.task_title').innerText = `Поздравляю, вы выполнили все ачивки, вы получите 100 бобров!`
+                    document.querySelector('.task_title').innerText =
+                        `Поздравляю, вы выполнили все ачивки, вы получите 100 бобров!`
                     document.querySelector('.task_title').style.color = '#00a460'
                     document.querySelector('.task_title').style.fontSize = '26px'
                     document.querySelector('.task_title').style.textAlign = 'center'
 
                 } else {
-                    let sec = floor(((Date.parse(response.data.time) / 1000) + 864000) - Date.parse(new Date) /
-                        1000)
-                    console.log(sec);
 
-                    to(sec)
+                    if (response.data.time) {
+                        let sec = floor(((Date.parse(response.data.time) / 1000) + 864000) - Date.parse(new Date) /
+                            1000)
+                        console.log(sec);
 
-                    function to(sec) {
-                        var min = sec / 60;
-                        var hour = min / 60;
-                        var day =
-                            Math.floor(hour / 24) + 'д, ' +
-                            Math.floor(hour % 24) + 'ч, ' +
-                            Math.floor(min % 60) + 'м, ' +
-                            Math.floor(sec % 60) + 'с';
-                        return day
+                        to(sec)
+
+                        function to(sec) {
+                            var min = sec / 60;
+                            var hour = min / 60;
+                            var day =
+                                Math.floor(hour / 24) + 'д, ' +
+                                Math.floor(hour % 24) + 'ч, ' +
+                                Math.floor(min % 60) + 'м, ' +
+                                Math.floor(sec % 60) + 'с';
+                            return day
+                        }
+
+                        document.querySelector(`#time`).innerText = "До сброса осталось: " + to(sec)
                     }
 
-                    document.querySelector(`#time`).innerText = "До сброса осталось: " + to(sec)
-
-                    document.querySelector('#user_name').innerText = `Привет ${response.data.login.split('@')[0]}!`
                     for (let i = 1; i <= 6; i++) {
 
                         document.querySelector(`#task${i}`).innerText = response.data[`task${i}`] != '' ? '✔ ' +
