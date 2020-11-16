@@ -11,26 +11,39 @@ const html = './public/html';
 
 const urlgenerator = require('urlgenerator');
 const createURLwithParameters = urlgenerator.createURLwithParameters;
+<<<<<<< HEAD
 const baseURL = "localhost:3000";
+=======
+const baseURL = "213.189.216.91:3000";
+
+
+const csvWriter = require('csv-write-stream');
+const csv = require('csv-parser');
+const fs = require("fs");
+
+let writer = csvWriter({
+    sendHeaders: false
+});
+>>>>>>> master
 
 // let parameters = { crap: 'taskybasky' };
 // let finalURL = createURLwithParameters(baseURL, parameters);
-// console.log("final URL is " , finalURL);
+// //console.log("final URL is " , finalURL);
 
 
 
 
 
-router.get('/', function(req, res) {
-  res.sendFile(path.resolve(html + '/index.html'));
+router.get('/', function (req, res) {
+    res.sendFile(path.resolve(html + '/index.html'));
 });
-router.get('/redirect', function(req, res) {
+router.get('/redirect', function (req, res) {
     res.sendFile(path.resolve(html + '/redir.html'));
     // TODO cookies verification
 
     // let parameters = {crap1: 'toilet', crap2: 'handywash'};
     // let finalURL = createURLwithParameters(baseURL, parameters);
-    // console.log("final URL is ", finalURL);
+    // //console.log("final URL is ", finalURL);
     // res.redirect(finalURL)
 });
 
@@ -47,14 +60,52 @@ router.get('/login', function (req, res) {
 });
 router.get('/admin', function (req, res) {
     obj = db.select_user_cookie(req.cookies['user']);
-    console.log();
+    //console.log();
     try {
-        if (obj.login == 'admin') {
-        res.sendFile(path.resolve(html + '/admin.html'));
-    } else {
+        if (obj.login == 'admin@croc.ru') {
+            res.sendFile(path.resolve(html + '/admin.html'));
+        } else {
+            res.sendFile(path.resolve(html + '/no.html'));
+        }
+    } catch (error) {
         res.sendFile(path.resolve(html + '/no.html'));
     }
-    } catch (error) {
+});
+router.get('/get_users_in_csv', function (req, res) {
+    obj = db.select_user_cookie(req.cookies['user']);
+
+    if (obj.login == 'admin@croc.ru') {
+        let objs = db.getAllUsers()
+
+        writer.pipe(fs.createWriteStream('./data.csv', {flags: 'a'}));
+
+        for (let i = 0; i < objs.length; i++) {
+
+            let tc = false;
+            if (objs[i].task1 != '' && objs[i].task2 != '' && objs[i].task3 != '' && objs[i].task4 != '' && objs[i].task5 != '' && objs[i].task6 != '') {
+                tc = true;
+            } else {
+                tc = false;
+            }
+        
+            writer.write({
+                login: objs[i].login,
+                tasks_complete: tc,
+            });
+            
+        }
+        writer.end()
+
+        setTimeout(() => {
+            res.sendFile(path.resolve('./data.csv'));
+        }, 600);
+        setTimeout(() => {
+            fs.unlink('./data.csv',function(err){
+                if(err) return console.log(err);
+        });  
+
+        }, 1000)
+    } else {
         res.sendFile(path.resolve(html + '/no.html'));
     }
 });
@@ -64,9 +115,13 @@ router.post('/login_form', jsonParser, async function (req, res) {
     if (user) {
         await db.add_cookie(req.body.login, req.body.password, cookie)
         res.cookie("user", cookie);
-        res.send({"status":"ok"});
+        res.send({
+            "status": "ok"
+        });
     } else {
-        res.send({"status":"error"});
+        res.send({
+            "status": "error"
+        });
     }
 })
 // removeA(ary, 'seven');
@@ -74,28 +129,39 @@ router.post('/login_form', jsonParser, async function (req, res) {
 router.post('/exit', jsonParser, async function (req, res) {
     db.cookie_del(req.cookies['user'])
     res.cookie("user", null);
-    res.send({"status":"ok"});
+    res.send({
+        "status": "ok"
+    });
 })
 router.post('/task_get', jsonParser, function (req, res) {
     let user = db.select_user_cookie(req.cookies['user']);
     let tasks = db.select_tasks();
     if (user != null) {
-        res.send({"data":user, "tasks": tasks});
+        res.send({
+            "data": user,
+            "tasks": tasks
+        });
     } else {
-        res.send({"status":"error"});
+        res.send({
+            "status": "error"
+        });
     }
 })
 router.post('/user_cookie', jsonParser, function (req, res) {
     let user = db.select_user_cookie(req.cookies['user']);
     if (user != null) {
-        res.send({"status":true});
+        res.send({
+            "status": true
+        });
     } else {
-        res.send({"status":false});
+        res.send({
+            "status": false
+        });
     }
 })
 router.post('/reg_form', jsonParser, async function (req, res) {
     let cookie = db.generate(12);
-    console.log(cookie);
+    //console.log(cookie);
     await db.new_obj({
         login: req.body.login,
         password: req.body.password,
@@ -121,26 +187,34 @@ router.get('/form', function (req, res) {
 
 })
 router.post('/getForm', jsonParser, function (req, res) {
-    console.log(req.body.login, req.body.password);   
+    //console.log(req.body.login, req.body.password);
 })
 router.post('/checkParams', jsonParser, function (req, res) {
     obj = db.select_user_cookie(req.cookies['user']);
     if (obj != null) {
         try {
-            let param_name = db.select_task(req.body.param1,req.body.param2)
+            let param_name = db.select_task(req.body.param1, req.body.param2)
             if (param_name) {
                 db.edit_user(obj.login, obj.password, `task${param_name['num']}`, param_name['name'])
-                res.send({staus:'ok'});
+                res.send({
+                    staus: 'ok'
+                });
             } else {
-                res.send({staus:'error task'})
+                res.send({
+                    staus: 'error task'
+                })
             }
         } catch (error) {
-            res.send({staus:'error task'})
+            res.send({
+                staus: 'error task'
+            })
         }
     } else {
-        res.send({staus:'no cookie'});
+        res.send({
+            staus: 'no cookie'
+        });
     }
-    
+
 })
 
 

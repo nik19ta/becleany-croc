@@ -67,7 +67,11 @@
         };
         console.log(data);
         
+<<<<<<< HEAD
         let response = await fetch('http://localhost:3000/checkParams', {
+=======
+        let response = await fetch('http://213.189.216.91:3000/checkParams', {
+>>>>>>> master
             method: 'POST',
             headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -79,6 +83,7 @@
         console.log(json.staus);
         if (json.staus == 'error task') {
             alert('Ссылка не исправна :(')
+<<<<<<< HEAD
             location.replace("http://localhost:3000/lk");
         } else if (json.staus == 'ok') {
             alert('Всё прошло отлично :)')
@@ -86,6 +91,15 @@
         } else if (json.staus == 'no cookie') {
             alert('Вы не вошли на сайт :)')
             location.replace("http://localhost:3000/login"); 
+=======
+            location.replace("http://213.189.216.91:3000/lk");
+        } else if (json.staus == 'ok') {
+            alert('Всё прошло отлично :)')
+            location.replace("http://213.189.216.91:3000/lk");
+        } else if (json.staus == 'no cookie') {
+            alert('Вы не вошли на сайт :)')
+            location.replace("http://213.189.216.91:3000/login"); 
+>>>>>>> master
         }
 
     }
