@@ -11,20 +11,7 @@ const html = './public/html';
 
 const urlgenerator = require('urlgenerator');
 const createURLwithParameters = urlgenerator.createURLwithParameters;
-<<<<<<< HEAD
 const baseURL = "localhost:3000";
-=======
-const baseURL = "213.189.216.91:3000";
-
-
-const csvWriter = require('csv-write-stream');
-const csv = require('csv-parser');
-const fs = require("fs");
-
-let writer = csvWriter({
-    sendHeaders: false
-});
->>>>>>> master
 
 // let parameters = { crap: 'taskybasky' };
 // let finalURL = createURLwithParameters(baseURL, parameters);

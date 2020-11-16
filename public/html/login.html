@@ -45,11 +45,7 @@ async function sendData() {
         console.log(data);
         if (document.getElementById('login').value == '' || document.getElementById('password').value == '') alert('Поля не могут быть пустыми')
         else {
-<<<<<<< HEAD
             fetch('http://localhost:3000/login_form', {
-=======
-            fetch('http://213.189.216.91:3000/login_form', {
->>>>>>> master
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -64,11 +60,7 @@ async function sendData() {
                     if (response.status === 'error') alert("Не верный логин и пароль");
                     else if (response.status === 'ok') {
                         alert("Вы успешно вошли в систему!");
-<<<<<<< HEAD
                         location.replace("http://localhost:3000/lk");
-=======
-                        location.replace("http://213.189.216.91:3000/lk");
->>>>>>> master
                     }
 
                 })
