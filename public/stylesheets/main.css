@@ -270,5 +270,9 @@ main {
     justify-content: center;
     flex-wrap: wrap; */
 }
-
+.time{
+    text-align: center;
+    color: #68676c;
+    width: 100%;    
+}
 /* @media only screen and (max-device-width: 480px) {} */

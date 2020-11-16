@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="../stylesheets/main.css">
     <meta charset="UTF-8">
@@ -7,10 +8,11 @@
     <link rel="shortcut icon" href="../images/masc-for-croc.ico" type="image/x-icon">
     <title>Document</title>
 </head>
+
 <body>
     <header>
         <img class="logo_text" src="../images/logo.png" alt="">
-        <div class="logo logo_div" >
+        <div class="logo logo_div">
             <img class="logo_img" src="../images/masc for croc.svg" alt="">
         </div>
     </header>
@@ -21,13 +23,14 @@
         </div>
 
         <div class="task">
-            <p class="task_title"  >На этой неделе ты: </p>
-            <p class="task_q" id="task1" ></p>
-            <p class="task_q" id="task2" ></p>
-            <p class="task_q" id="task3" ></p>
-            <p class="task_q" id="task4" ></p>
-            <p class="task_q" id="task5" ></p>
-            <p class="task_q" id="task6" ></p>
+            <p class="task_title">На этой неделе ты: </p>
+            <p class="task_q" id="task1"></p>
+            <p class="task_q" id="task2"></p>
+            <p class="task_q" id="task3"></p>
+            <p class="task_q" id="task4"></p>
+            <p class="task_q" id="task5"></p>
+            <p class="task_q" id="task6"></p>
+            <p class="task_q time " id="time"></p>
         </div>
         <div class="content">
             <button class="auth_btn">
@@ -36,50 +39,73 @@
         </div>
     </main>
     <script>
-
         function exit() {
-            fetch('http://194.242.120.3:3000/exit', {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-        })
-            .then(response => response.text())
-            .then((response) => {
-                console.log(response)
-                location.replace("http://194.242.120.3:3000/");
-            })
-            .catch(err => console.log(err))
+            fetch('http://localhost:3000/exit', {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    method: "POST",
+                })
+                .then(response => response.text())
+                .then((response) => {
+                    console.log(response)
+                    location.replace("http://localhost:3000/");
+                })
+                .catch(err => console.log(err))
         }
 
-        fetch('http://194.242.120.3:3000/task_get', {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-        })
+        fetch('http://localhost:3000/task_get', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+            })
             .then(response => response.text())
             .then((response) => {
+
+                const floor = (num) => {
+                    return Math.floor(num);
+                };
+
                 response = JSON.parse(response)
-                console.log(response);
+
+
+                let sec = floor(((Date.parse(response.data.time) / 1000) + 864000) - Date.parse(new Date) /
+                    1000)
+                console.log(sec);
+
+                to(sec)
+
+                function to(sec) {
+                    var min = sec / 60;
+                    var hour = min / 60;
+                    var day =
+                        Math.floor(hour / 24) + 'д, ' +
+                        Math.floor(hour % 24) + 'ч, ' +
+                        Math.floor(min % 60) + 'м, ' +
+                        Math.floor(sec % 60) + 'с';
+                    return day
+                }
+
+                document.querySelector(`#time`).innerText = "До сброса осталось: " + to(sec)
 
                 document.querySelector('#user_name').innerText = `Привет ${response.data.login.split('@')[0]}!`
                 for (let i = 1; i <= 6; i++) {
 
-                    document.querySelector(`#task${i}`).innerText = response.data[`task${i}`] != '' ? '✔ ' +response.data[`task${i}`] : response.tasks[`${i -1}`][`name`]     
+                    document.querySelector(`#task${i}`).innerText = response.data[`task${i}`] != '' ? '✔ ' +
+                        response.data[`task${i}`] : response.tasks[`${i -1}`][`name`]
 
                     if (response.data[`task${i}`] != '') {
-                        document.querySelector(`#task${i}`).classList.add('true')   
+                        document.querySelector(`#task${i}`).classList.add('true')
                     }
                 }
-
-
             })
             .catch(err => console.log(err))
     </script>
-    
-    
+
+
 </body>
+
 </html>
