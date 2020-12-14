@@ -73,6 +73,7 @@ main {
     color: #68676C;
     font-size: 28px;
     margin-top: -20px;
+    text-align: center;
 }
 
 .sub_title {
@@ -123,7 +124,7 @@ main {
     margin-top: -10px;
 }
 
-.auth_btn {
+.auth_btn{
     width: 302px;
     height: 81px;
     border: 0;
@@ -132,7 +133,15 @@ main {
     margin-bottom: 30px;
     cursor: pointer;
 }
-
+.auth_btn a{
+    width: 302px;
+    height: 81px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+    
 .text_btn {
     text-align: center;
     font: normal normal bold 23px/33px Croc;
@@ -324,6 +333,7 @@ main {
 }
 
 .image_in_center img {
+    margin-top: 50px;
     width: 167px;
     height: 167px;
 }
