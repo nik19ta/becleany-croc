@@ -4,4 +4,4 @@
 
 Если выполняешь все задания то получаешь приз, через 14 дней, задания поменяются, а ачивки сбросятся
 
-- [Скриншоты](https://drive.google.com/drive/folders/18ABpKZPbF7PWi8BILUxbJxSIbFJ8DhkV?usp=sharing)
+- [Дополнительная информация](https://nik19ta.github.io/portfolio/?project=Becleany)
